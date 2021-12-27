@@ -1,0 +1,11 @@
+tabWidth: 2
+jsxSingleQuote: true
+printWidth: 100
+singleQuote: true
+semi: false
+overrides:
+  - files: '*.json'
+    options:
+      printWidth: 100
+arrowParens: always
+trailingComma: none
