@@ -2,14 +2,18 @@
   "compilerOptions": {
     "lib": ["es5", "es6"],
     "target": "ESNext",
-    "module": "ESNext",
+    "module": "CommonJS",
     "moduleResolution": "node",
     "outDir": "./build",
+    "baseUrl": ".",
     "esModuleInterop": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "sourceMap": true
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "sourceMap": true,
+    "types": ["vitest/global"]
   },
-  "include": ["src/**/*.ts", "app.ts"],
+  "include": ["src/**/*.ts", "app.ts", "*.js"],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }
