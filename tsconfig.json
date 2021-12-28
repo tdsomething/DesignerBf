@@ -12,8 +12,11 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "sourceMap": true,
-    "types": ["vitest/global"]
+    "types": ["vitest/global"],
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
-  "include": ["src/**/*.ts", "app.ts", "*.js"],
+  "include": ["src/**/*.ts", "src/app.ts", "*.js"],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }
