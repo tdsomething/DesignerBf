@@ -10,6 +10,7 @@ specifiers:
   prettier: ^2.5.1
   reflect-metadata: ^0.1.13
   ts-node: ^10.4.0
+  tsconfig-paths: ^3.12.0
   typeorm: ^0.2.41
   typescript: ^4.5.4
   vite: ^2.7.7
@@ -28,6 +29,7 @@ devDependencies:
   nodemon: 2.0.15
   prettier: 2.5.1
   ts-node: 10.4.0_bad060d5f9aca5284661d88d739ba15b
+  tsconfig-paths: 3.12.0
   typescript: 4.5.4
   vite: 2.7.7
   vitest: 0.0.118_vite@2.7.7
@@ -170,6 +172,10 @@ packages:
 
   /@types/http-errors/1.8.1:
     resolution: {integrity: sha512-e+2rjEwK6KDaNOm5Aa9wNGgyS9oSZU/4pfSMMPYNOfjvFI0WVXm29+ITRFr6aKDvvKo7uU1jV68MW4ScsfDi7Q==}
+    dev: true
+
+  /@types/json5/0.0.29:
+    resolution: {integrity: sha1-7ihweulOEdK4J7y+UnC86n8+ce4=}
     dev: true
 
   /@types/keygrip/1.0.2:
@@ -1512,6 +1518,13 @@ packages:
     resolution: {integrity: sha1-Wx85evx11ne96Lz8Dkfh+aPZqJg=}
     dev: true
 
+  /json5/1.0.1:
+    resolution: {integrity: sha512-aKS4WQjPenRxiQsC93MNfjx+nbF4PAdYzmd/1JIj8HYzqfbu86beTuNgXDzPknWk0n0uARlyewZo4s++ES36Ow==}
+    hasBin: true
+    dependencies:
+      minimist: 1.2.5
+    dev: true
+
   /keygrip/1.1.0:
     resolution: {integrity: sha512-iYSchDJ+liQ8iwbSI2QqsQOvqv58eJCEanyJPJi+Khyu8smkcKSFUCbPwzFcL7YVtZ6eONjqRX/38caJ7QjRAQ==}
     engines: {node: '>= 0.6'}
@@ -2295,6 +2308,11 @@ packages:
     dependencies:
       ansi-regex: 5.0.1
 
+  /strip-bom/3.0.0:
+    resolution: {integrity: sha1-IzTBjpx1n3vdVv3vfprj1YjmjtM=}
+    engines: {node: '>=4'}
+    dev: true
+
   /strip-json-comments/2.0.1:
     resolution: {integrity: sha1-PFMZQukIwml8DsNEhYwobHygpgo=}
     engines: {node: '>=0.10.0'}
@@ -2412,6 +2430,15 @@ packages:
       make-error: 1.3.6
       typescript: 4.5.4
       yn: 3.1.1
+    dev: true
+
+  /tsconfig-paths/3.12.0:
+    resolution: {integrity: sha512-e5adrnOYT6zqVnWqZu7i/BQ3BnhzvGbjEjejFXO20lKIKpwTaupkCPgEfv4GZK1IBciJUEhYs3J3p75FdaTFVg==}
+    dependencies:
+      '@types/json5': 0.0.29
+      json5: 1.0.1
+      minimist: 1.2.5
+      strip-bom: 3.0.0
     dev: true
 
   /tslib/2.3.1:
