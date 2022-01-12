@@ -9,6 +9,6 @@ router.swagger({
   swaggerHtmlEndpoint: '/swagger',
   swaggerJsonEndpoint: '/swagger-json'
 })
-router.mapDir(resolve(__dirname, '../controllers'))
+router.mapDir(resolve(__dirname, '../controllers/'))
 
 export default router

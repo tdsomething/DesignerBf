@@ -11,6 +11,7 @@ create database [name];
 pnpm dev
 ```
 ## TODO
+- [ ] Response Handler
 - [ ] Data Validation
 - [ ] Logger
 - [ ] Register

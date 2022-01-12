@@ -1,2 +1,0 @@
-// gen jwt
-// validate jwt
