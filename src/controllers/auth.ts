@@ -1,7 +1,9 @@
 import { tagsAll, responsesAll, request, summary, body } from 'koa-swagger-decorator'
 import { loginSchema } from '@/models'
-import { globalPrefix } from '@/constants'
-import { IContext } from '@/types'
+import { globalPrefix, ERROR_CODE  } from '@/constants'
+import { IContext, IUser } from '@/types'
+import { ResponseHandler } from '@/handlers'
+import { genJwt } from '@/utils'
 
 
 @globalPrefix
@@ -12,7 +14,14 @@ export default class AuthController {
   @summary('submit user')
   @body(loginSchema)
   static async login (ctx: IContext) {
-    const body = ctx.validatedBody as {}
-    ctx.body = { ...body }
+    const body = ctx.validatedBody as IUser
+    console.log('sign', genJwt(body))
+    ctx.body = { ...ResponseHandler.getResp(ERROR_CODE.LOGIN_SUCCESS, body) }
+  }
+
+  @request('post', '/register')
+  @summary('register user')
+  static async register (ctx: IContext) {
+    ctx.body = { register: 'register' }
   }
 }

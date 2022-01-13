@@ -11,10 +11,10 @@ create database [name];
 pnpm dev
 ```
 ## TODO
+- [x] JWT
 - [ ] Response Handler
 - [ ] Data Validation
 - [ ] Logger
 - [ ] Register
-- [ ] JWT
 - [ ] Login
 - [ ] OAuth
