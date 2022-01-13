@@ -9,7 +9,11 @@ createConnection()
   .then(async () => {
     const app = new Koa()
     app.use(bodeParser())
-    app.use(Jwt({ secret: JWT_SECRET_KEY }).unless({ path: [/^\/swagger/, /^\/api\/login/, /^\/api\/register/]}))
+    app.use(
+      Jwt({ secret: JWT_SECRET_KEY }).unless({
+        path: [/^\/swagger/, /^\/api\/login/, /^\/api\/register/]
+      })
+    )
     app.use(router.routes())
     app.listen(9800)
   })

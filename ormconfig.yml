@@ -6,9 +6,9 @@ default:
   password: root
   database: designer
   synchronize: true
-  entities: 
+  entities:
     - src/entities/mysql/*.ts
-  migrations: 
+  migrations:
     - src/migration/mysql/*.ts
   migrationsTableName: custom_migration_table
   cli:

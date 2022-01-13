@@ -8,5 +8,6 @@ export const getWelcome = (params = 'World') => {
 type DefineGenJwt = (data: unknown) => string
 
 export const genJwt: DefineGenJwt = (data: unknown) => {
-  return sign({ data: data }, JWT_SECRET_KEY)
+  const expires = Math.floor(Date.now() / 1000) + 60 * 60
+  return sign({ data: data, exp: expires }, JWT_SECRET_KEY)
 }

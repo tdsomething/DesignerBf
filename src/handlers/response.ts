@@ -1,7 +1,7 @@
 import { ERROR_MSG } from '@/constants'
 
 export class ResponseHandler {
-  static getResp <T>(code: number, data: T, msg?: string) {
+  static getResp<T>(code: number, data: T, msg?: string) {
     if (msg) {
       return { code: code, msg: msg, data: data }
     } else {
