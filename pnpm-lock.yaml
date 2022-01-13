@@ -3,6 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@types/koa': ^2.13.4
   '@types/node': ^17.0.5
+  class-validator: ^0.13.2
   jsonwebtoken: ^8.5.1
   koa: ^2.13.4
   koa-bodyparser: ^4.3.0
@@ -28,6 +29,7 @@ dependencies:
 devDependencies:
   '@types/koa': 2.13.4
   '@types/node': 17.0.8
+  class-validator: 0.13.2
   jsonwebtoken: 8.5.1
   koa-bodyparser: 4.3.0
   koa-jwt: 4.0.3
@@ -727,6 +729,16 @@ packages:
       {
         integrity: sha512-5tK7EtrZ0N+OLFMthtqOj4fI2Jeb88C4CAZPu25LDVUgXJ0A3Js4PMGqrn0JU1W0Mh1/Z8wZzYPxqUrXeBboCQ==
       }
+    dev: true
+
+  /class-validator/0.13.2:
+    resolution:
+      {
+        integrity: sha512-yBUcQy07FPlGzUjoLuUfIOXzgynnQPPruyK1Ge2B74k9ROwnle1E+NxLWnUv5OLU8hA/qL5leAE9XnXq3byaBw==
+      }
+    dependencies:
+      libphonenumber-js: 1.9.44
+      validator: 13.7.0
     dev: true
 
   /clean-stack/2.2.0:
@@ -2033,6 +2045,13 @@ packages:
     engines: { node: '>=8' }
     dependencies:
       package-json: 6.5.0
+    dev: true
+
+  /libphonenumber-js/1.9.44:
+    resolution:
+      {
+        integrity: sha512-zhw8nUMJuQf7jG1dZfEOKKOS6M3QYIv3HnvB/vGohNd0QfxIQcObH3a6Y6s350H+9xgBeOXClOJkS0hJ0yvS3g==
+      }
     dev: true
 
   /lines-and-columns/1.2.4:

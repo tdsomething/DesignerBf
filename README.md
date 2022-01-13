@@ -17,9 +17,9 @@ pnpm dev
 ## TODO
 
 - [x] JWT
-- [ ] Response Handler
-- [ ] Data Validation
+- [x] Response Handler
+- [x] Data Validation
+- [x] Register
 - [ ] Logger
-- [ ] Register
 - [ ] Login
 - [ ] OAuth

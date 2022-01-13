@@ -33,6 +33,7 @@
   "devDependencies": {
     "@types/koa": "^2.13.4",
     "@types/node": "^17.0.5",
+    "class-validator": "^0.13.2",
     "jsonwebtoken": "^8.5.1",
     "koa-bodyparser": "^4.3.0",
     "koa-jwt": "^4.0.3",
