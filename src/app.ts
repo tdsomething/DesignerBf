@@ -17,7 +17,7 @@ createConnection()
       })
     )
     app.use(router.routes())
-    app.listen(9800)
+    app.listen(9801)
   })
   .catch((error: string) => {
     console.log('TypeOrm connection error: ' + error)

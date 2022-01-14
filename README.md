@@ -15,11 +15,10 @@ pnpm dev
 ```
 
 ## TODO
-
+### rudimentary
 - [x] JWT
 - [x] Response Handler
 - [x] Data Validation
 - [x] Register
+- [x] Login
 - [ ] Logger
-- [ ] Login
-- [ ] OAuth

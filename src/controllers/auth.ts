@@ -13,19 +13,25 @@ import { validate, ValidationError } from 'class-validator'
 @tagsAll(['Auth'])
 export default class AuthController {
   @request('post', '/login')
-  @summary('submit user')
+  @summary('login site')
   @body(loginSchema)
   static async login(ctx: IContext): Promise<void> {
     const body = ctx.validatedBody as IUser
-    const payloads = Object.assign(body, { token: genJwt(body) })
-    ctx.body = { ...ResponseHandler.getResp(SUCCESS_CODE.LOGIN_SUCCESS, payloads) }
+    const userRepository: Repository<User> = await getManager().getRepository(User)
+    const targetUser = await userRepository.findOne({ userName: body.userName })
+    if (targetUser && targetUser.password === body.password) {
+      const payloads = Object.assign({ token: genJwt({ id: targetUser.id }) })
+      ctx.body = ResponseHandler.getResp(SUCCESS_CODE.LOGIN_SUCCESS, payloads)
+    } else {
+      ctx.body = ResponseHandler.getResp(ERROR_CODE.LOGIN_FAILURE)
+    }
   }
 
   @request('post', '/register')
   @summary('register user')
   @body(registerSchema)
   static async register(ctx: IContext): Promise<void> {
-    const payloads: any = ctx.validatedBody
+    const payloads = ctx.validatedBody as IUser
     const saveUser: User = new User()
     saveUser.userName = payloads.userName
     saveUser.password = payloads.password
@@ -33,15 +39,17 @@ export default class AuthController {
     saveUser.email = payloads.email
     const errors: ValidationError[] = await validate(saveUser)
     if (errors.length) {
-      ctx.body = { ...ResponseHandler.getResp(ERROR_CODE.CREATE_FAILURE, errors) }
+      ctx.body = ResponseHandler.getResp(ERROR_CODE.CREATE_FAILURE, errors)
     } else {
       const userRepository: Repository<User> = getManager().getRepository(User)
-      const existed = await userRepository.findOne({ userName: saveUser.userName })
+      const existed = await userRepository.findOne({
+        userName: saveUser.userName
+      })
       if (existed) {
-        ctx.body = { ...ResponseHandler.getResp(ERROR_CODE.CREATE_FAILURE, '该用户已存在') }
+        ctx.body = ResponseHandler.getResp(ERROR_CODE.CREATE_FAILURE, '该用户已存在')
       } else {
         await userRepository.insert(saveUser)
-        ctx.body = { ...ResponseHandler.getResp(SUCCESS_CODE.CREATE_SUCCESS) }
+        ctx.body = ResponseHandler.getResp(SUCCESS_CODE.CREATE_SUCCESS)
       }
     }
   }

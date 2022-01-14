@@ -5,12 +5,14 @@ export const enum SUCCESS_CODE {
 }
 
 export const enum ERROR_CODE {
-  CREATE_FAILURE = 5001
+  CREATE_FAILURE = 5001,
+  LOGIN_FAILURE = 5002
 }
 
 export const ERROR_MSG = {
   2001: 'createSuccess',
   2002: 'querySuccess',
   2003: 'loginSuccess',
-  5001: 'createFailure'
+  5001: 'createFailure',
+  5002: 'loginFailure'
 }
