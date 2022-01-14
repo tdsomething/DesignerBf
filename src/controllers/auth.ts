@@ -2,7 +2,7 @@ import { tagsAll, responsesAll, request, summary, body } from 'koa-swagger-decor
 import { loginSchema, registerSchema } from '@/models'
 import { globalPrefix, ERROR_CODE, SUCCESS_CODE } from '@/constants'
 import { IContext, IUser } from '@/types'
-import { ResponseHandler } from '@/handlers'
+import { HttpResponse } from '@/handlers'
 import { genJwt } from '@/utils'
 import { getManager, Repository } from 'typeorm'
 import { User } from '@/entities/mysql/User'
@@ -21,9 +21,9 @@ export default class AuthController {
     const targetUser = await userRepository.findOne({ userName: body.userName })
     if (targetUser && targetUser.password === body.password) {
       const payloads = Object.assign({ token: genJwt({ id: targetUser.id }) })
-      ctx.body = ResponseHandler.getResp(SUCCESS_CODE.LOGIN_SUCCESS, undefined, payloads)
+      ctx.body = HttpResponse(SUCCESS_CODE.LOGIN_SUCCESS, payloads)
     } else {
-      ctx.body = ResponseHandler.getResp(ERROR_CODE.LOGIN_FAILURE)
+      ctx.body = HttpResponse(ERROR_CODE.LOGIN_FAILURE)
     }
   }
 
@@ -39,17 +39,17 @@ export default class AuthController {
     saveUser.email = payloads.email
     const errors: ValidationError[] = await validate(saveUser)
     if (errors.length) {
-      ctx.body = ResponseHandler.getResp(ERROR_CODE.CREATE_FAILURE, null, errors)
+      ctx.body = HttpResponse(ERROR_CODE.CREATE_FAILURE, errors)
     } else {
       const userRepository: Repository<User> = getManager().getRepository(User)
       const existed = await userRepository.findOne({
         userName: saveUser.userName
       })
       if (existed) {
-        ctx.body = ResponseHandler.getResp(ERROR_CODE.CREATE_FAILURE, '该用户已存在')
+        ctx.body = HttpResponse(ERROR_CODE.CREATE_FAILURE, '该用户已存在')
       } else {
         await userRepository.insert(saveUser)
-        ctx.body = ResponseHandler.getResp(SUCCESS_CODE.CREATE_SUCCESS)
+        ctx.body = HttpResponse(SUCCESS_CODE.CREATE_SUCCESS)
       }
     }
   }

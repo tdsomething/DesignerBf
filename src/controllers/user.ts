@@ -3,7 +3,7 @@ import { Context } from 'koa'
 import { globalPrefix, SUCCESS_CODE } from '@/constants'
 import { getManager, Repository } from 'typeorm'
 import { User } from '@/entities/mysql/User'
-import { ResponseHandler } from '@/handlers'
+import { HttpResponse } from '@/handlers'
 
 @globalPrefix
 @responsesAll({ 200: { description: 'success' } })
@@ -15,6 +15,6 @@ export default class UserController {
     const user: any = ctx.state.user
     const userRepository: Repository<User> = await getManager().getRepository(User)
     const userTarget = await userRepository.findOne(user.data)
-    ctx.body = ResponseHandler.getResp(SUCCESS_CODE.QUERY_SUCCESS, undefined, userTarget)
+    ctx.body = HttpResponse(SUCCESS_CODE.QUERY_SUCCESS, userTarget)
   }
 }
