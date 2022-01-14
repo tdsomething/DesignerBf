@@ -21,7 +21,7 @@ export default class AuthController {
     const targetUser = await userRepository.findOne({ userName: body.userName })
     if (targetUser && targetUser.password === body.password) {
       const payloads = Object.assign({ token: genJwt({ id: targetUser.id }) })
-      ctx.body = ResponseHandler.getResp(SUCCESS_CODE.LOGIN_SUCCESS, payloads)
+      ctx.body = ResponseHandler.getResp(SUCCESS_CODE.LOGIN_SUCCESS, undefined, payloads)
     } else {
       ctx.body = ResponseHandler.getResp(ERROR_CODE.LOGIN_FAILURE)
     }
@@ -39,7 +39,7 @@ export default class AuthController {
     saveUser.email = payloads.email
     const errors: ValidationError[] = await validate(saveUser)
     if (errors.length) {
-      ctx.body = ResponseHandler.getResp(ERROR_CODE.CREATE_FAILURE, errors)
+      ctx.body = ResponseHandler.getResp(ERROR_CODE.CREATE_FAILURE, null, errors)
     } else {
       const userRepository: Repository<User> = getManager().getRepository(User)
       const existed = await userRepository.findOne({

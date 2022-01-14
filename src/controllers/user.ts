@@ -15,6 +15,6 @@ export default class UserController {
     const user: any = ctx.state.user
     const userRepository: Repository<User> = await getManager().getRepository(User)
     const userTarget = await userRepository.findOne(user.data)
-    ctx.body = ResponseHandler.getResp(SUCCESS_CODE.QUERY_SUCCESS, userTarget)
+    ctx.body = ResponseHandler.getResp(SUCCESS_CODE.QUERY_SUCCESS, undefined, userTarget)
   }
 }
