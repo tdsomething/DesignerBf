@@ -1,5 +1,6 @@
 import { ERROR_MSG } from '@/constants'
 
+//TODO: need special deal for errors
 // export function HttpResponse<T>(code: number, msg: string, data: T)
 export function HttpResponse(code: number)
 export function HttpResponse(code: number, msg: string)
