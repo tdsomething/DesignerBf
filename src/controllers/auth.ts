@@ -7,6 +7,7 @@ import { genJwt } from '@/utils'
 import { getManager, Repository } from 'typeorm'
 import { User } from '@/entities/mysql/User'
 import { validate, ValidationError } from 'class-validator'
+import { createHash } from 'crypto'
 
 @globalPrefix
 @responsesAll({ 200: { description: 'Success' } })
@@ -47,6 +48,7 @@ export default class AuthController {
       if (existed) {
         ctx.body = HttpResponse(ERROR_CODE.CREATE_FAILURE, '该用户已存在')
       } else {
+        saveUser.password = createHash('md5').update(saveUser.password).digest('hex')
         await userRepository.insert(saveUser)
         ctx.body = HttpResponse(SUCCESS_CODE.CREATE_SUCCESS)
       }

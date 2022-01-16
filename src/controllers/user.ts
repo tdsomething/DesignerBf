@@ -15,6 +15,7 @@ export default class UserController {
     const user: any = ctx.state.user
     const userRepository: Repository<User> = await getManager().getRepository(User)
     const userTarget = await userRepository.findOne(user.data)
+    // const backProps = { id: userTarget.id, email: userTarget.email, nickName: userTarget.nickName }
     ctx.body = HttpResponse(SUCCESS_CODE.QUERY_SUCCESS, userTarget)
   }
 }
