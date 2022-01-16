@@ -18,7 +18,7 @@ export default class AuthController {
   static async login(ctx: IContext): Promise<void> {
     const body = ctx.validatedBody as IUser
     const userRepository: Repository<User> = await getManager().getRepository(User)
-    const targetUser = await userRepository.findOne({ userName: body.userName })
+    const targetUser = await userRepository.findOne({ email: body.email })
     if (targetUser && targetUser.password === body.password) {
       const payloads = Object.assign({ token: genJwt({ id: targetUser.id }) })
       ctx.body = HttpResponse(SUCCESS_CODE.LOGIN_SUCCESS, payloads)
@@ -33,17 +33,16 @@ export default class AuthController {
   static async register(ctx: IContext): Promise<void> {
     const payloads = ctx.validatedBody as IUser
     const saveUser: User = new User()
-    saveUser.userName = payloads.userName
+    saveUser.email = payloads.email
     saveUser.password = payloads.password
     saveUser.nickName = payloads.nickName
-    saveUser.email = payloads.email
     const errors: ValidationError[] = await validate(saveUser)
     if (errors.length) {
       ctx.body = HttpResponse(ERROR_CODE.CREATE_FAILURE, errors)
     } else {
       const userRepository: Repository<User> = getManager().getRepository(User)
       const existed = await userRepository.findOne({
-        userName: saveUser.userName
+        email: saveUser.email
       })
       if (existed) {
         ctx.body = HttpResponse(ERROR_CODE.CREATE_FAILURE, '该用户已存在')

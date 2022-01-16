@@ -6,9 +6,10 @@ export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string
 
-  @Column({ length: 8 })
-  @Length(2, 8)
-  userName: string
+  @Column({ length: 32 })
+  @Length(6, 32)
+  @IsEmail()
+  email: string
 
   @Column({ length: 16 })
   @Length(8, 16)
@@ -17,9 +18,4 @@ export class User {
   @Column({ length: 8 })
   @Length(0, 8)
   nickName: string
-
-  @Column({ length: 32 })
-  @Length(6, 32)
-  @IsEmail()
-  email: string
 }
