@@ -5,5 +5,5 @@ export const loginSchema = {
 
 export const registerSchema = {
   ...loginSchema,
-  nickName: { type: 'string', required: false, example: 'nickName' },
+  nickName: { type: 'string', required: false, example: 'nickName' }
 }
